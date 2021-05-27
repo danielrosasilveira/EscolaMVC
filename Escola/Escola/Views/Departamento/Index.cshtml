@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Modelo.Cadastro.Departamento>
+
+@{
+    Layout = "_LayoutIES";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="card-block">
+    <div class="card-header text-black-50 bg-light text-center h4">
+        Departamentos Registrados
+    </div>
+    <div class="card-body">
+        <table class="table table-striped" id="tabela-departamentos">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DepartamentoID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Instituicao.Nome)
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DepartamentoID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Instituicao.Nome)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.DepartamentoID">Alterar</a> |
+                            <a asp-action="Details" asp-route-id="@item.DepartamentoID">Detalhes</a> |
+                            <a asp-action="Delete" asp-route-id="@item.DepartamentoID">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer bg-success text-center">
+        <a asp-action="Create" class="btn-success">Criar Departamento</a>
+    </div>
+</div>
+
+    @section Scripts{
+        <!-- jQuery -->
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tabela-departamentos').DataTable({
+                    "order": [[1, "asc"]]
+                });
+            });
+        </script>
+
+    }

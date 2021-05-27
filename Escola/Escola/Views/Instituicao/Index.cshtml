@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Modelo.Cadastro.Instituicao>
+
+@{
+    Layout = "_LayoutIES";
+}
+
+@section styles{
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @TempData["Message"]
+    </div>
+}
+
+<div class="card-block">
+    <div class="card-header text-black-50 bg-light text-center h4">
+        Instituições Registradas
+    </div>
+    <div class="card-body">
+        <table class="table table-striped" id="tabela-instituicoes">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InstituicaoID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Endereco)
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InstituicaoID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Endereco)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.InstituicaoID">Alterar</a> |
+                            <a asp-action="Details" asp-route-id="@item.InstituicaoID">Detalhes</a> |
+                            <a asp-action="Delete" asp-route-id="@item.InstituicaoID">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer bg-success text-center">
+        <a asp-action="Create" class="btn btn-success">Criar Instituição</a>
+    </div>
+</div>
+@section Scripts{
+}

@@ -1,0 +1,64 @@
+﻿@model Modelo.Cadastro.Instituicao
+
+@{
+    Layout = "_LayoutIES";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+}
+
+<div class="card">
+    <div class="card-header text-white bg-secondary text-center h1">
+        Exibição da Instituição
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label asp-for="InstituicaoID" class="control-label"></label>
+            <br />
+            <div class="input-group mb-3">
+                <span class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="fas fa-key"></i>
+                    </span>
+                </span>
+                <input asp-for="InstituicaoID" class="form-control" disabled="disabled"
+                       aria-describedby="basic-addon1" />
+            </div>
+
+            <label asp-for="Nome" class="control-label"></label>
+            <br />
+            <div class="input-group mb-3">
+                <span class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon2">
+                        <i class="fas fa-building"></i>
+                    </span>
+                </span>
+                <input asp-for="Nome" class="form-control" disabled="disabled"
+                       aria-describedby="basic-addon2" />
+            </div>
+
+            <label asp-for="Endereco" class="control-label"></label>
+            <br />
+            <div class="input-group mb-3">
+                <span class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </span>
+                </span>
+                <input asp-for="Endereco" class="form-control" disabled="disabled"
+                       aria-describedby="basic-addon3" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-5">
+        @Html.Partial("~/Views/Instituicao/_ComDepartamentos.cshtml", Model.Departamentos.ToList())
+    </div>
+
+    <div class="card-footer text-center text-white">
+        <a asp-action="Index" class="btn btn-secondary">Retornar</a>
+    </div>
+</div>
+
+

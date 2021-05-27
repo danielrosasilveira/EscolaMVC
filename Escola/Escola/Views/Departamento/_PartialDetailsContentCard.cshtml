@@ -1,0 +1,42 @@
+﻿@model Modelo.Cadastro.Departamento
+
+<div class="card-body">
+    <div class="form-group">
+
+        <label asp-for="DepartamentoID" class="control-label"></label>
+        <br />
+        <div class="input-group mb-3">
+            <span class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">
+                    <i class="fas fa-key"></i>
+                </span>
+            </span>
+            <input asp-for="DepartamentoID" class="form-control" disabled="disabled"
+                   aria-describedby="basic-addon1" />
+        </div>
+
+        <label asp-for="Nome" class="control-label"></label>
+        <br />
+        <div class="input-group mb-3">
+            <span class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">
+                    <i class="fas fa-building"></i>
+                </span>
+            </span>
+            <input asp-for="Nome" class="form-control" disabled="disabled"
+                   aria-describedby="basic-addon2" />
+        </div>
+
+        <label asp-for="Instituicao.Nome" class="control-label"></label>
+        <br />
+        <div class="input-group mb-3">
+            <span class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">
+                    <i class="fas fa-university"></i>
+                </span>
+            </span>
+            <input asp-for="Instituicao.Nome" class="form-control" disabled="disabled" 
+                   aria-describedby="basic-addon3"/>
+        </div>
+    </div>
+</div>

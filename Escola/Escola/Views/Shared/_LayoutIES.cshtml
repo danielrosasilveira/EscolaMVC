@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />    
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">
+            <img src="~/images/logo.png" width="30" height="30" 
+                 alt="logo faculdade reges"/>
+            ASP .NET CORE MVC
+        </a>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <nav class="nav flex-column">
+                    <a class="navbar-link active" asp-controller="Instituicao" asp-action="Index">
+                        <img src="~/images/ies.png" width="30" height="30" />
+                        Instituição
+                    </a>
+                    <br />
+                    <a class="navbar-link" asp-controller="Departamento" asp-action="Index">
+                        <img src="~/images/dept.png" width="30" height="30" />
+                        Departamento
+                    </a>
+                    <br />
+                    <a class="navbar-link" asp-controller="Academico" asp-action="Index">
+                        <img src="~/images/academic.png" width="30" height="30" />
+                        Acadêmicos
+                    </a>
+                </nav>
+            </div>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar fixed-bottom" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">Sistema</a>
+    </nav>
+    @RenderSection("Scripts", required:false)
+</body>
+</html>
