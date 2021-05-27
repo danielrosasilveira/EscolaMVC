@@ -8,8 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Escola.Controllers
+namespace Escola.Area.Discente.Controllers
 {
+    [Area(nameof(Discente))]
     public class AcademicoController : Controller
     {
         private readonly IESContext _context;

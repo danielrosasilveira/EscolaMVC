@@ -8,8 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Escola.Data.DAL;
 
-namespace Escola.Controllers
+namespace Escola.Areas.Cadastros.Controllers
 {
+    [Area(nameof(Cadastros))]
     public class InstituicaoController : Controller
     {
         private readonly IESContext _context;

@@ -54,6 +54,11 @@ namespace Escola
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "areaRoute",
+                    pattern: "{area:exists}/{controller}/{action=Index}/{id?}"
+                    );
             });
         }
     }

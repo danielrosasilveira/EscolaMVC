@@ -9,8 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Escola.Controllers
+namespace Escola.Areas.Cadastros.Controllers
 {
+    [Area(nameof(Cadastros))]
     public class DepartamentoController : Controller
     {
         private readonly IESContext _context;
