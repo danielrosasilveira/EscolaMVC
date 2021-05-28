@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Escola.Area.Discente.Controllers
+namespace Escola.Areas.Discente.Controllers
 {
     [Area(nameof(Discente))]
     public class AcademicoController : Controller

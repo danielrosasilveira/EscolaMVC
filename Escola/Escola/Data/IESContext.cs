@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Escola.Models.Infra;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Modelo.Cadastro;
 using Modelo.Discente;
 using System;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Escola.Data
 {
-    public class IESContext : DbContext
+    public class IESContext : IdentityDbContext<UsuarioDaAplicacao>
     {
         public IESContext(DbContextOptions<IESContext> options) : base(options)
         {
