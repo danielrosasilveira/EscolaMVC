@@ -7,11 +7,9 @@ using Modelo.Cadastro;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Escola.Data.DAL;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Escola.Areas.Cadastros.Controllers
 {
-    [Authorize]
     [Area(nameof(Cadastros))]
     public class InstituicaoController : Controller
     {
