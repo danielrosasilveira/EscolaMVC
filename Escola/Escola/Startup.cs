@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Escola.Models.Infra;
+using Microsoft.AspNetCore.Identity;
 
 namespace Escola
 {
@@ -27,6 +29,16 @@ namespace Escola
         {
             services.AddControllersWithViews();
             services.AddDbContext<IESContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IESConnection")));
+
+            services.AddIdentity<UsuarioDaAplicacao, IdentityRole>()
+                .AddEntityFrameworkStores<IESContext>()
+                .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Infra/Acessar";
+                options.AccessDeniedPath = "/Infra/AcessoNegado";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +59,9 @@ namespace Escola
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
+
+            app.UseAuthorization();            
 
             app.UseEndpoints(endpoints =>
             {

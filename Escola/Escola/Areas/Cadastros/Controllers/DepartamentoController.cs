@@ -1,5 +1,6 @@
 ﻿using Escola.Data;
 using Escola.Data.DAL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Escola.Areas.Cadastros.Controllers
 {
-    [Area(nameof(Cadastros))]
+    [Area(nameof(Cadastros))]   
     public class DepartamentoController : Controller
     {
         private readonly IESContext _context;
