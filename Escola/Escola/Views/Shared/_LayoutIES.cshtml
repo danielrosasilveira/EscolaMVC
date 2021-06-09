@@ -1,17 +1,20 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<Escola.Models.Infra.UsuarioDaAplicacao> SignInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<Escola.Models.Infra.UsuarioDaAplicacao> UserManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />    
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
     <nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="#">
-            <img src="~/images/logo.png" width="30" height="30" 
-                 alt="logo faculdade reges"/>
+            <img src="~/images/logo.png" width="30" height="30"
+                 alt="logo faculdade reges" />
             ASP .NET CORE MVC
         </a>
     </nav>
@@ -23,6 +26,20 @@
             <div class="col-12">&nbsp;</div>
             <div class="col-12">&nbsp;</div>
         </div>
+
+        <div class="row" style="text-align:right;">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div>
+                        Olá @UserManager.GetUserName(User), bem-vindo |
+                        @Html.ActionLink("Logout", "Sair", "Infra", new { area = "" })
+                    </div>
+                }
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-2">
                 <nav class="nav flex-column">
@@ -54,6 +71,6 @@
     <nav class="navbar fixed-bottom" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="#">Sistema</a>
     </nav>
-    @RenderSection("Scripts", required:false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

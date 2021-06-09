@@ -32,7 +32,7 @@ namespace Escola.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Acessar (string returnUrl = null)
+        public async Task<IActionResult> Acessar(string returnUrl = null)
         {
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -43,6 +43,80 @@ namespace Escola.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
+
+        //todo : Montar POST do Acessar
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegistrarNovoUsuario(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegistrarNovoUsuario(
+            RegistrarNovoUsuarioViewModel model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new UsuarioDaAplicacao
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("Usuário criado com sucesso");
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation("Usuário acesso com a conta criada");
+                    return RedirectToLocal(returnUrl);
+                }
+                AddErrors(result);
+            }
+            return View(model);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(error.Code, error.Description);
+            }
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else 
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Sair()
+        {
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("Usuário realizou logout");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
 
         public IActionResult Index()
         {
